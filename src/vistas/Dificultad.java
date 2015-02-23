@@ -18,6 +18,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
 import javax.swing.JList;
+import javax.swing.JRadioButton;
+import java.awt.FlowLayout;
+import java.awt.Font;
 
 public class Dificultad extends JFrame {
 
@@ -63,36 +66,68 @@ public class Dificultad extends JFrame {
 		
 		JPanel panelOpciones = new JPanel();
 		panelBotones.add(panelOpciones);
+		panelOpciones.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panel_3 = new JPanel();
+		panelOpciones.add(panel_3);
+		panel_3.setLayout(new BorderLayout(0, 0));
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("");
+		rdbtnNewRadioButton_1.setEnabled(false);
+		panel_3.add(rdbtnNewRadioButton_1, BorderLayout.WEST);
 		
 		JButton btnFacil = new JButton("Facil");
+		btnFacil.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel_3.add(btnFacil);
 		btnFacil.setForeground(Color.GREEN);
-		btnFacil.setHorizontalAlignment(SwingConstants.LEFT);
 		btnFacil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		panelOpciones.setLayout(new GridLayout(0, 1, 0, 0));
-		panelOpciones.add(btnFacil);
+		
+		JPanel panel_4 = new JPanel();
+		panelOpciones.add(panel_4);
+		panel_4.setLayout(new BorderLayout(0, 0));
+		
+		JRadioButton radioButton_1 = new JRadioButton("");
+		radioButton_1.setEnabled(false);
+		panel_4.add(radioButton_1, BorderLayout.WEST);
 		
 		JButton btnMedio = new JButton("Medio");
+		btnMedio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel_4.add(btnMedio);
 		btnMedio.setForeground(Color.BLUE);
-		panelOpciones.add(btnMedio);
-		btnMedio.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		JPanel panel_5 = new JPanel();
+		panelOpciones.add(panel_5);
+		panel_5.setLayout(new BorderLayout(0, 0));
+		
+		JRadioButton radioButton = new JRadioButton("");
+		radioButton.setEnabled(false);
+		panel_5.add(radioButton, BorderLayout.WEST);
 		
 		JButton btnDificil = new JButton("Dificil");
+		btnDificil.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel_5.add(btnDificil);
 		btnDificil.setForeground(Color.RED);
-		panelOpciones.add(btnDificil);
-		btnDificil.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		JButton btnExtremo = new JButton("Extremo");
-		panelOpciones.add(btnExtremo);
-		btnExtremo.setHorizontalAlignment(SwingConstants.LEFT);
-		btnExtremo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnDificil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		JPanel panel_6 = new JPanel();
+		panelOpciones.add(panel_6);
+		panel_6.setLayout(new BorderLayout(0, 0));
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
+		rdbtnNewRadioButton.setEnabled(false);
+		panel_6.add(rdbtnNewRadioButton, BorderLayout.WEST);
+		
+		JButton btnExtremo = new JButton("Extremo");
+		btnExtremo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panel_6.add(btnExtremo, BorderLayout.CENTER);
+		btnExtremo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
@@ -101,6 +136,7 @@ public class Dificultad extends JFrame {
 		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton btnAtras = new JButton("Atras");
+		btnAtras.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAtras.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
