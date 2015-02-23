@@ -21,6 +21,8 @@ import javax.swing.JList;
 import javax.swing.JRadioButton;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class Dificultad extends JFrame {
 
@@ -46,6 +48,8 @@ public class Dificultad extends JFrame {
 	 * Create the frame.
 	 */
 	public Dificultad() {
+		setTitle("Seleccionar dificultad");
+		setForeground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 450);
 		contentPane = new JPanel();
@@ -77,6 +81,7 @@ public class Dificultad extends JFrame {
 		panel_3.add(rdbtnNewRadioButton_1, BorderLayout.WEST);
 		
 		JButton btnFacil = new JButton("Facil");
+		btnFacil.setIcon(null);
 		btnFacil.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_3.add(btnFacil);
 		btnFacil.setForeground(Color.GREEN);
@@ -93,6 +98,7 @@ public class Dificultad extends JFrame {
 		radioButton_1.setEnabled(false);
 		panel_4.add(radioButton_1, BorderLayout.WEST);
 		
+		
 		JButton btnMedio = new JButton("Medio");
 		btnMedio.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_4.add(btnMedio);
@@ -107,6 +113,7 @@ public class Dificultad extends JFrame {
 		panel_5.add(radioButton, BorderLayout.WEST);
 		
 		JButton btnDificil = new JButton("Dificil");
+		btnDificil.setBackground(Color.WHITE);
 		btnDificil.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_5.add(btnDificil);
 		btnDificil.setForeground(Color.RED);
