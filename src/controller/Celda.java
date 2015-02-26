@@ -5,12 +5,19 @@ package controller;
  */
 public class Celda {
     private int numero;
+    private boolean inicial;
+
     public Celda(){
         numero = 0;
     }
     public Celda(int num)
     {
         numero = num;
+    }
+    public Celda(int num, boolean inicial)
+    {
+        numero = num;
+        this.inicial = inicial;
     }
 
     public int getNumero() {
@@ -26,5 +33,13 @@ public class Celda {
     public boolean equals(int numero)
     {
         return numero == this.numero;
+    }
+
+    public boolean isInicial() {
+        return inicial;
+    }
+
+    public void setInicial(boolean inicial) {
+        this.inicial = inicial;
     }
 }

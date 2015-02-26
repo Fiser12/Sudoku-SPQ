@@ -1,7 +1,11 @@
+import controller.Sudoku;
+
 public class Main
 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Sudoku prueba = new Sudoku(1);
+        prueba.showEjercicio();
+        prueba.showSolucion();
     }
 }

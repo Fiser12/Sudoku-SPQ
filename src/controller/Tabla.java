@@ -17,7 +17,7 @@ public class Tabla {
     {
         tabla[i][j] = c;
     }
-    public Celda[] getCelda(int i)
+    public Celda[] getFila(int i)
     {
         return tabla[i];
     }
@@ -30,7 +30,7 @@ public class Tabla {
         }
         return col;
     }
-    public Celda[] getBloqueo(int i, int j)
+    public Celda[] getBloque(int i, int j)
     {
         int b = 0;
         Celda[] bloque = new Celda[9];
@@ -60,4 +60,74 @@ public class Tabla {
         }
         return bool;
     }
+    public void copy (Tabla tabla) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                this.tabla[i][j] = tabla.getCelda(i, j);
+            }
+        }
+    }
+    public void clear () {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                this.tabla[i][j] = new Celda(0);
+            }
+        }
+    }
+    public void reset () {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (!getCelda(i, j).isInicial()) {
+                    this.tabla[i][j] = new Celda(0, false);
+                }
+            }
+        }
+    }
+    public boolean contains(int i, int j, int n) {
+        Celda[] columna = getColumna(j);
+        Celda[] fila = getFila(i);
+        Celda[] bloque = getBloque(i, j);
+
+        if(contains(columna, n) || contains(fila, n) || contains(bloque, n)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public void printBoard () {
+        System.out.println("-------------------");
+        for (int i = 0; i < 9; i++) {
+            System.out.print("|");
+            for (int j = 0; j < 9; j++) {
+                if (tabla[i][j] == null || tabla[i][j].equals(0)) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(tabla[i][j]);
+                }
+                if (j % 3 == 2) {
+                    System.out.print("|");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            if (i % 3 == 2) {
+                System.out.println("\n-------------------");
+            } else {
+                System.out.println();
+            }
+        }
+    }
+
+
+    private boolean contains (Celda[] array, int n) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null && array[i].equals(n)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
 }
