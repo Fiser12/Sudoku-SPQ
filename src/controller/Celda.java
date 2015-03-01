@@ -6,10 +6,8 @@ package controller;
 public class Celda {
     private int numero;
     private boolean inicial;
+    private boolean error;
 
-    public Celda(){
-        numero = 0;
-    }
     public Celda(int num)
     {
         numero = num;
@@ -41,5 +39,13 @@ public class Celda {
 
     public void setInicial(boolean inicial) {
         this.inicial = inicial;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
     }
 }

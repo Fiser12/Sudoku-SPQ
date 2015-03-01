@@ -1,14 +1,15 @@
 package controller;
 
-/**
- * Created by Fiser on 25/2/15.
- */
+import controller.Exceptions.CeldaInicialException;
+import controller.Exceptions.SudokuException;
+import controller.Exceptions.ValorErroneoException;
+
 public class Sudoku
 {
     private Tabla tabla;
     private Tabla solucion;
     private int nivel;
-    private Tabla destino;
+    private int numeroErrores;
 
     public Sudoku(int nivel)
     {
@@ -62,5 +63,23 @@ public class Sudoku
     public void showSolucion()
     {
         solucion.printBoard();
+    }
+    public void setValor(int i, int j, int n) throws SudokuException {
+        if(!tabla.getCelda(i, j).isInicial())//Comprobamos que no sea una casilla inicial
+        {
+            if(solucion.getCelda(i, j).getNumero()==n){//Comprobamos si al introducir un número en una casilla no inicial se ha producido un error con la solución
+                //Comprobado ya todo que es correcto introducimos el valor
+                tabla.setCelda(solucion.getCelda(i, j), i, j);
+            }
+            else
+            {
+                numeroErrores++;
+                throw new ValorErroneoException(i, j, n, solucion.getCelda(i, j).getNumero());
+            }
+        }
+        else
+        {
+            throw new CeldaInicialException(i, j);
+        }
     }
 }
