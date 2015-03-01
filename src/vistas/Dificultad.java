@@ -6,22 +6,30 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+
 import javax.swing.JButton;
+
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Color;
+
 import javax.swing.JList;
 import javax.swing.JRadioButton;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.SystemColor;
+
 import javax.swing.UIManager;
 
 public class Dificultad extends JFrame {
@@ -44,6 +52,8 @@ public class Dificultad extends JFrame {
 		});
 	}
 
+	private static Thread hilo = null;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -51,11 +61,12 @@ public class Dificultad extends JFrame {
 		setTitle("Seleccionar dificultad");
 		setForeground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 300, 450);
+		setBounds(450, 100, 300, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		setDefaultCloseOperation(0); // No se cerrará pulsando X
 		
 		JPanel panelSeleccion = new JPanel();
 		contentPane.add(panelSeleccion, BorderLayout.NORTH);
@@ -112,7 +123,7 @@ public class Dificultad extends JFrame {
 		radioButton.setEnabled(false);
 		panel_5.add(radioButton, BorderLayout.WEST);
 		
-		JButton btnDificil = new JButton("Dificil");
+		JButton btnDificil = new JButton("Difícil");
 		btnDificil.setBackground(Color.WHITE);
 		btnDificil.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_5.add(btnDificil);
@@ -147,6 +158,7 @@ public class Dificultad extends JFrame {
 		btnAtras.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				volver();
 			}
 		});
 		
@@ -156,6 +168,22 @@ public class Dificultad extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_2.add(panel_1);
+	}
+	
+	public void volver()
+	{
+		hilo = new Thread()  
+		{ 
+			public void run() 
+			{
+				setVisible(false);
+				MenuJuego mj = new MenuJuego();
+				mj.setResizable(false);
+				mj.setVisible(true);
+				hilo = null;
+			}
+		};
+		hilo.start();
 	}
 
 }

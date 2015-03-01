@@ -85,11 +85,6 @@ public class Login extends JFrame implements ActionListener{
 		JLabel lblHzloAquY = new JLabel("H\u00E1zlo aqu\u00ED y empieza a disfrutar con Sudoku");
 		lblHzloAquY.setBounds(24, 186, 250, 31);
 		contentPane.add(lblHzloAquY);
-		
-
-		//Diseño de la ventana
-		setDefaultCloseOperation(0);
-
 	}
 
 	public void actionPerformed(ActionEvent e)
