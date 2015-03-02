@@ -3,10 +3,12 @@ package es.deusto.ingenieria.spq.sudoku.client.gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -81,6 +83,8 @@ public class Juego extends JFrame{
 		public Component getTableCellRendererComponent ( JTable table, Object value, boolean selected, boolean focused, int row, int column )
 	    {
 			JLabel etiqueta = new JLabel();
+			etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
+			etiqueta.setFont(new Font("Consolas", Font.PLAIN, 20));
 			 etiqueta.setBorder(new MatteBorder(0, 0, 0, 0,Color.GRAY));
 			 
         	 if(column == 3 || column == 6)
