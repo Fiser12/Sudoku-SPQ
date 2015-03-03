@@ -50,7 +50,7 @@ public class Juego extends JFrame{
 	 */
 	public Juego() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 430);
+		setBounds(100, 100, 500, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -69,7 +69,7 @@ public class Juego extends JFrame{
 		dtm.setColumnCount(9);
 		dtm.setRowCount(9);
 		table.setModel(dtm);
-		table.setRowHeight(40);
+		table.setRowHeight(45);
 		table.setDefaultRenderer(Object.class, new CellRenderer());
 	}
 	
@@ -82,11 +82,13 @@ public class Juego extends JFrame{
 
 		public Component getTableCellRendererComponent ( JTable table, Object value, boolean selected, boolean focused, int row, int column )
 	    {
+			
+				
 			JLabel etiqueta = new JLabel();
 			etiqueta.setHorizontalAlignment(SwingConstants.CENTER);
 			etiqueta.setFont(new Font("Consolas", Font.PLAIN, 20));
 			 etiqueta.setBorder(new MatteBorder(0, 0, 0, 0,Color.GRAY));
-			 
+			
         	 if(column == 3 || column == 6)
         	 {
         		 etiqueta.setBorder(new MatteBorder(0, 5, 0, 0,Color.GRAY));
@@ -111,9 +113,21 @@ public class Juego extends JFrame{
 	        	etiqueta.setBackground( Color.WHITE);
 	        }
 	        etiqueta.setOpaque(true);
-        	etiqueta.setText((String)value);
-        	
+//	        if(((String)value != null)&&(Integer.parseInt((String)value))>=9&&1<=(Integer.parseInt((String)value))){
+	    if(esUnNumero((String)value)){
+	        
+       	etiqueta.setText((String)value);
+	}
 	        return etiqueta;
 	    }
+		public  boolean esUnNumero(String cadena)
+		 {
+		 try {
+		 Integer.parseInt(cadena);
+		 return true;
+		 } catch (NumberFormatException nfe){
+		 return false;
+		 }
+		 }
 	}
 }
