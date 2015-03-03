@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 
 
 import javax.swing.JButton;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 
 public class MenuJuego extends JFrame
@@ -40,13 +43,17 @@ public class MenuJuego extends JFrame
 	public MenuJuego() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 100, 300, 450);
+		setBounds(450, 100, 300, 283);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JLabel lblOpcion = new JLabel("Seleccionar una opcion:");
+		lblOpcion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		contentPane.add(lblOpcion);
 		
 		JButton btnJugar = new JButton("Comenzar Partida");
-		btnJugar.setBounds(0, 50, 294, 50);
+		btnJugar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(btnJugar);
 		btnJugar.addActionListener(new ActionListener() 
 		{
@@ -58,7 +65,7 @@ public class MenuJuego extends JFrame
 		});
 		
 		JButton btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(0, 100, 294, 50);
+		btnContinuar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(btnContinuar);
 		btnContinuar.setEnabled(false); //disable mientras no haya una partida en marcha
 		btnContinuar.addActionListener(new ActionListener()
@@ -73,7 +80,7 @@ public class MenuJuego extends JFrame
 		});
 		
 		JButton btnDificultad = new JButton("Seleccionar Dificultad");
-		btnDificultad.setBounds(0, 150, 294, 50);
+		btnDificultad.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(btnDificultad);
 		btnDificultad.addActionListener(new ActionListener()
 		{
@@ -85,7 +92,7 @@ public class MenuJuego extends JFrame
 		});
 		
 		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(0, 200, 294, 50);
+		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		contentPane.add(btnSalir);
 		btnSalir.addActionListener(new ActionListener()
 		{
