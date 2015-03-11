@@ -1,6 +1,8 @@
 package es.deusto.ingenieria.spq.sudoku.client.controller;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 import es.deusto.ingenieria.spq.sudoku.client.gui.Login2;
 import es.deusto.ingenieria.spq.sudoku.client.remote.RMIServiceLocator;
@@ -11,10 +13,6 @@ public class SudokuController
 	private RMIServiceLocator rsl;
 	private String[] service;
 	
-	/** 
-	 * Relaciona la aplicación con el ServiceLocator
-	 * @param args
-	 */
 	public SudokuController(String[] args) throws RemoteException 
 	{
 		this.rsl = new RMIServiceLocator();
@@ -28,18 +26,11 @@ public class SudokuController
 		return this.service;
 	}
 	
-	/**
-	 * Cierra la conexión con el servidor
-	 */
 	public void exit()
 	{
 		System.exit(0);
 	}
 	
-	/** 
-	 * Envía una partida al servidor
-	 * @param partida
-	 */
 	public void enviarPartida(Partida partida)
 	{
 		try{    		
@@ -49,11 +40,6 @@ public class SudokuController
     	}
 	}
 	
-	/** 
-	 * Envía los datos de logueo para verificar 
-	 * @param nick
-	 * @param pass
-	 */
 	public Usuario inicioSesion(String nick, String pass)
 	{
 		try{    		
@@ -64,26 +50,36 @@ public class SudokuController
 		return null;
 	}
 	
-	/** 
-	 * Envía los datos para registrar 
-	 * @param nick
-	 * @param pass
-	 */
-	public Usuario registrar(String nick, String pass)
+	public Usuario registrar(String nick, String pass, String correo)
 	{
 		try{    		
-    		return this.rsl.getService().registrar(nick, pass);
+    		return this.rsl.getService().registrar(nick, pass, correo);
     	} catch(Exception e){
     		System.out.println("$ Error registrando: " + e.getMessage());
     	}
 		return null;
 	}
 	
+	public Usuario guardarPartida(String nick, int[][] ultPar)
+	{
+		try{    		
+    		return this.rsl.getService().guardarPartida(nick, ultPar);
+    	} catch(Exception e){
+    		System.out.println("$ Error guardando partida: " + e.getMessage());
+    	}
+		return null;
+	}
 	
-	/** Método principal
-	 * 
-	 * @param args
-	 */
+	public List<Partida> getPartidas() {
+		List<Partida> partidas = new ArrayList<>();
+		try {
+			partidas = rsl.getService().getPartidas();
+		} catch (RemoteException e) {
+			System.err.println("$ Error getting Partidas: " + e.getMessage());
+		}
+		return partidas;
+	}
+	
 	@SuppressWarnings("unused")
 	public static void main(String[]args) throws RemoteException
 	{

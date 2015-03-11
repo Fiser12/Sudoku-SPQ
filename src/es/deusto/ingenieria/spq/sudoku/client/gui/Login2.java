@@ -102,7 +102,7 @@ public class Login2 extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				Usuario usuario = controller.registrar(textField.getText(), 
-					new String(passwordField.getPassword()));
+					new String(passwordField.getPassword()), "alguien@example.es");
 				System.out.println("Nick:	" + textField.getText());
 				System.out.println("Password:	" + new String(passwordField.getPassword()));
 				if (usuario!=null) {
