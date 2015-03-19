@@ -116,10 +116,63 @@ public class Juego extends JFrame{
 //	        if(((String)value != null)&&(Integer.parseInt((String)value))>=9&&1<=(Integer.parseInt((String)value))){
 	    if(esUnNumero((String)value)){
 	        
-       	etiqueta.setText((String)value);
-	}
+       	
+       	String ayuda="";
+       	String a=value.toString();
+       	a=NumerosIguales(a);
+       	if(a.length()>1){
+       	for(int i=0;i<a.length();i++){
+       		if(i==0){
+       			ayuda=ayuda+a.substring(i, i+1);
+       		}
+       		else{
+       		ayuda=ayuda+"|"+a.substring(i, i+1);}}
+       		
+       if(ayuda.length()>3){
+    	   etiqueta.setFont(new Font("Consolas", Font.PLAIN, 10));
+    	   
+       }  etiqueta.setText(ayuda);}
+       else{
+    	   etiqueta.setText(a);  
+       }
+      
+      
+       	}
+       
+	   
+	
 	        return etiqueta;
 	    }
+		public String NumerosIguales(String a){
+			String[]b=new String[a.length()];
+			String[]c=new String[a.length()];
+			String debolver="";
+			boolean enc =false;
+			for(int i=0;i<a.length();i++){
+				b[i]=a.substring(i, i+1);
+				enc=false;
+				for(int j=0;j<c.length;j++){
+					if(b[i].equals(c[j])){
+						enc=true;
+					}}
+					if(!enc){
+						c[i]=b[i];
+					}
+					else{
+					c[i]="";	
+					}
+				
+				}
+			
+
+			for(int j=0;j<c.length;j++){
+				
+				debolver=debolver+c[j];
+				
+			}
+			
+			return debolver;
+		}
 		public  boolean esUnNumero(String cadena)
 		 {
 		 try {
