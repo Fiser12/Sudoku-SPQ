@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.xml.stream.events.Comment;
 
 import java.awt.Color;
 
@@ -28,7 +29,8 @@ public class Juego extends JFrame{
 	private JPanel contentPane;
 	private JTextField jTextTiempo; // tiempo de partida 
 	private JTable table;
-
+	String [][]valores;
+    boolean [][]contiene;
 	/**
 	 * Launch the application.
 	 */
@@ -55,7 +57,7 @@ public class Juego extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-
+        valores=new String[9][9];
 		jTextTiempo = new JTextField();
 		jTextTiempo.setEditable(false);
 		contentPane.add(jTextTiempo, BorderLayout.NORTH);
@@ -119,6 +121,7 @@ public class Juego extends JFrame{
        	
        	String ayuda="";
        	String a=value.toString();
+        valores[row][column]=a;
        	a=NumerosIguales(a);
        	if(a.length()>1){
        	for(int i=0;i<a.length();i++){
@@ -131,11 +134,14 @@ public class Juego extends JFrame{
        if(ayuda.length()>3){
     	   etiqueta.setFont(new Font("Consolas", Font.PLAIN, 10));
     	   
-       }  etiqueta.setText(ayuda);}
+     
+       }  etiqueta.setText(ayuda);
+       }
        else{
     	   etiqueta.setText(a);  
+    	 
+    	
        }
-      
       
        	}
        
@@ -182,5 +188,21 @@ public class Juego extends JFrame{
 		 return false;
 		 }
 		 }
+//		public  JLabel SeleccionarColor(JTable table, String value, boolean selected, boolean focused, int row, int column){
+//			JLabel Etiqueta=new JLabel();
+//			for(int i=0;i<9;i++){
+//			for(int j=0;j<9;j++){
+//				for(int s=0;s<value.length();s++){
+//					if(value.substring(s, s+1).contentEquals(valores[i][j])){
+//					
+//						contiene[i][j]=true;	
+//					}
+//				}
+//			}
+//		}
+//			
+//			
+//			
+//		}
 	}
 }
