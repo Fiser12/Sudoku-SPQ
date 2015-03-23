@@ -3,6 +3,7 @@ package es.deusto.ingenieria.spq.sudoku.client.gui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -34,8 +35,25 @@ import javax.swing.UIManager;
 
 public class Dificultad extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private JPanel panelSeleccion;
+	private JLabel lblSeleccionarUnaOpcion;
+	private JPanel panelBotones;
+	private JPanel panelOpciones;
+	private JPanel panel_3;
+	private JRadioButton rdbtn_1F;
+	private JButton btnFacil;
+	private JRadioButton radioButton_M;
+	private JButton btnMedio;
+	private JRadioButton radioButtonD;
+	private JButton btnDificil;
+	private JRadioButton rdbtnE;
+	private JButton btnExtremo;
+	private JButton btnAtras;
 	/**
 	 * Launch the application.
 	 */
@@ -58,9 +76,9 @@ public class Dificultad extends JFrame {
 	 * Create the frame.
 	 */
 	public Dificultad() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Seleccionar dificultad");
 		setForeground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(450, 100, 300, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,36 +86,40 @@ public class Dificultad extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setDefaultCloseOperation(0); // No se cerrará pulsando X
 		
-		JPanel panelSeleccion = new JPanel();
+		panelSeleccion = new JPanel();
 		contentPane.add(panelSeleccion, BorderLayout.NORTH);
 		panelSeleccion.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JLabel lblSeleccionarUnaOpcion = new JLabel("Seleccionar una dificultad para el sudoku");
+		lblSeleccionarUnaOpcion = new JLabel("Seleccionar una dificultad para el sudoku");
 		panelSeleccion.add(lblSeleccionarUnaOpcion);
 		
-		JPanel panelBotones = new JPanel();
+		panelBotones = new JPanel();
 		contentPane.add(panelBotones, BorderLayout.CENTER);
 		panelBotones.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JPanel panelOpciones = new JPanel();
+		panelOpciones = new JPanel();
 		panelBotones.add(panelOpciones);
 		panelOpciones.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JPanel panel_3 = new JPanel();
+		panel_3 = new JPanel();
 		panelOpciones.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("");
-		rdbtnNewRadioButton_1.setEnabled(false);
-		panel_3.add(rdbtnNewRadioButton_1, BorderLayout.WEST);
+		rdbtn_1F = new JRadioButton("");
+		rdbtn_1F.setEnabled(false);
+		panel_3.add(rdbtn_1F, BorderLayout.WEST);
 		
-		JButton btnFacil = new JButton("Facil");
+		btnFacil = new JButton("Facil");
 		btnFacil.setIcon(null);
 		btnFacil.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_3.add(btnFacil);
 		btnFacil.setForeground(Color.GREEN);
 		btnFacil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				radioButtonD.setSelected(false);
+				rdbtnE.setSelected(false);
+				rdbtn_1F.setSelected(true);
+				radioButton_M.setSelected(false);
 			}
 		});
 		
@@ -105,31 +127,45 @@ public class Dificultad extends JFrame {
 		panelOpciones.add(panel_4);
 		panel_4.setLayout(new BorderLayout(0, 0));
 		
-		JRadioButton radioButton_1 = new JRadioButton("");
-		radioButton_1.setEnabled(false);
-		panel_4.add(radioButton_1, BorderLayout.WEST);
+		radioButton_M = new JRadioButton("");
+		radioButton_M.setEnabled(false);
+		panel_4.add(radioButton_M, BorderLayout.WEST);
 		
 		
-		JButton btnMedio = new JButton("Medio");
+	    btnMedio = new JButton("Medio");
 		btnMedio.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_4.add(btnMedio);
 		btnMedio.setForeground(Color.BLUE);
+		btnMedio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			radioButtonD.setSelected(false);
+			rdbtnE.setSelected(false);
+			rdbtn_1F.setSelected(false);
+			radioButton_M.setSelected(true);
+			
+			}
+		});
 		
 		JPanel panel_5 = new JPanel();
 		panelOpciones.add(panel_5);
 		panel_5.setLayout(new BorderLayout(0, 0));
 		
-		JRadioButton radioButton = new JRadioButton("");
-		radioButton.setEnabled(false);
-		panel_5.add(radioButton, BorderLayout.WEST);
+		radioButtonD = new JRadioButton("");
+		radioButtonD.setEnabled(false);
+		panel_5.add(radioButtonD, BorderLayout.WEST);
 		
-		JButton btnDificil = new JButton("Difícil");
+		btnDificil = new JButton("Difícil");
 		btnDificil.setBackground(Color.WHITE);
 		btnDificil.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_5.add(btnDificil);
 		btnDificil.setForeground(Color.RED);
 		btnDificil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			radioButtonD.setSelected(true);
+			rdbtnE.setSelected(false);
+			rdbtn_1F.setSelected(false);
+			radioButton_M.setSelected(false);
+			
 			}
 		});
 		
@@ -137,15 +173,20 @@ public class Dificultad extends JFrame {
 		panelOpciones.add(panel_6);
 		panel_6.setLayout(new BorderLayout(0, 0));
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
-		rdbtnNewRadioButton.setEnabled(false);
-		panel_6.add(rdbtnNewRadioButton, BorderLayout.WEST);
+		rdbtnE = new JRadioButton("");
+		rdbtnE.setEnabled(false);
+		panel_6.add(rdbtnE, BorderLayout.WEST);
 		
-		JButton btnExtremo = new JButton("Extremo");
+		btnExtremo = new JButton("Extremo");
 		btnExtremo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_6.add(btnExtremo, BorderLayout.CENTER);
 		btnExtremo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				radioButtonD.setSelected(false);
+				rdbtnE.setSelected(true);
+				rdbtn_1F.setSelected(false);
+				radioButton_M.setSelected(false);
+				//metodo de selecionar la dificulatad
 			}
 		});
 		
@@ -153,7 +194,7 @@ public class Dificultad extends JFrame {
 		panelBotones.add(panel_2);
 		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnAtras = new JButton("Atras");
+		btnAtras = new JButton("Atras");
 		btnAtras.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAtras.setHorizontalAlignment(SwingConstants.LEFT);
 		btnAtras.addActionListener(new ActionListener() {
@@ -161,7 +202,6 @@ public class Dificultad extends JFrame {
 				volver();
 			}
 		});
-		
 		JPanel panel = new JPanel();
 		panel_2.add(panel);
 		panel_2.add(btnAtras);

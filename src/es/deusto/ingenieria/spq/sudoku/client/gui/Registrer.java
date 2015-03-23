@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
 
 public class Registrer extends JFrame {
 
@@ -34,6 +35,9 @@ public class Registrer extends JFrame {
    private JLabel lblNewLabel;
    private JPanel panel_3;
    private JLabel lblPass1;
+   private JPanel panel_5;
+   private JLabel lblNewLabel_1;
+   private JTextField textField_1;
 	/**
 	 * Launch the application.
 	 */
@@ -106,7 +110,7 @@ public class Registrer extends JFrame {
 		
 		panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(3, 0, 0, 0));
+		panel_1.setLayout(new GridLayout(4, 0, 0, 0));
 		
 		panel_2 = new JPanel();
 		panel_1.add(panel_2);
@@ -137,6 +141,16 @@ public class Registrer extends JFrame {
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setColumns(20);
 		panel_4.add(passwordField_1);
+		
+		panel_5 = new JPanel();
+		panel_1.add(panel_5);
+		
+		lblNewLabel_1 = new JLabel("Email: ");
+		panel_5.add(lblNewLabel_1);
+		
+		textField_1 = new JTextField();
+		panel_5.add(textField_1);
+		textField_1.setColumns(20);
 		contentPane = new JPanel();
 	}
 
