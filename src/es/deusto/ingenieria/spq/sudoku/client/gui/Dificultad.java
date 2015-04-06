@@ -84,7 +84,7 @@ public class Dificultad extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		setDefaultCloseOperation(0); // No se cerrará pulsando X
+//		setDefaultCloseOperation(0); // No se cerrará pulsando X
 		
 		panelSeleccion = new JPanel();
 		contentPane.add(panelSeleccion, BorderLayout.NORTH);
@@ -155,7 +155,6 @@ public class Dificultad extends JFrame {
 		panel_5.add(radioButtonD, BorderLayout.WEST);
 		
 		btnDificil = new JButton("Difícil");
-		btnDificil.setBackground(Color.WHITE);
 		btnDificil.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panel_5.add(btnDificil);
 		btnDificil.setForeground(Color.RED);
