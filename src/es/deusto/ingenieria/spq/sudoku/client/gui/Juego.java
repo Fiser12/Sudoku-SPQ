@@ -1,30 +1,28 @@
 package es.deusto.ingenieria.spq.sudoku.client.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextField;
-import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-import javax.xml.stream.events.Comment;
 
-import com.sun.javafx.application.PlatformImpl.FinishListener;
-
-import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-
-public class Juego extends JFrame
+public class Juego extends JFrame implements ActionListener
 {
 
 	/**
@@ -32,10 +30,18 @@ public class Juego extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField jTextTiempo; // tiempo de partida 
 	private JTable table;
 	String [][]valores = new String[9][9];
     boolean [][]contiene = new boolean[9][9];
+	private JPanel panel;
+	private JTextField JtextFieldReloj;
+	private JLabel lblTiempo;
+	private JLabel lblErrores;
+	private JTextField JtextFieldErrores;
+	private Timer temporizador = new Timer(1000, this);
+	private int horas = 0;
+	private int min = 0;
+	private int seg = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -62,11 +68,29 @@ public class Juego extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		jTextTiempo = new JTextField();
-		jTextTiempo.setEditable(false);
-		contentPane.add(jTextTiempo, BorderLayout.NORTH);
-		jTextTiempo.setColumns(10);
 
+		panel = new JPanel();
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(0, 4, 0, 0));
+		
+		lblTiempo = new JLabel("Tiempo: ");
+		lblTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblTiempo);
+		
+		JtextFieldReloj = new JTextField();
+		JtextFieldReloj.setEditable(false);
+		panel.add(JtextFieldReloj);
+		JtextFieldReloj.setColumns(10);
+		
+		lblErrores = new JLabel("Contador Errores:");
+		lblErrores.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblErrores);
+		
+		JtextFieldErrores = new JTextField();
+		JtextFieldErrores.setEditable(false);
+		panel.add(JtextFieldErrores);
+		JtextFieldErrores.setColumns(10);
+		
 		table = new JTable();
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		contentPane.add(table, BorderLayout.CENTER);
@@ -77,6 +101,7 @@ public class Juego extends JFrame
 		table.setModel(dtm);
 		table.setRowHeight(45);
 		table.setDefaultRenderer(Object.class, new CellRenderer());
+		temporizador.start();
 	}
 	
 	public class CellRenderer extends DefaultTableCellRenderer{
@@ -214,5 +239,59 @@ public class Juego extends JFrame
 			}
 			return etiqueta;
 		}
+	}
+	
+	public void reloj()
+	{
+		if(seg <= 9 && min <= 9 && horas <= 9)
+		{
+			JtextFieldReloj.setText("" + "0" + horas + ":" + "0" + min + ":" + "0" + seg);
+		}
+		else if(seg >= 9 && min <= 9 && horas <= 9)
+		{
+			JtextFieldReloj.setText("" + "0" + horas + ":" + "0" + min + ":" + seg);
+		}
+		else if(seg >= 9 && min >= 9 && horas <= 9)
+		{
+			JtextFieldReloj.setText("" + "0" + horas + ":" + min + ":" + seg);
+		}
+		else if(seg >= 9 && min <= 9 && horas >= 9)
+		{
+			JtextFieldReloj.setText("" + horas + ":" + "0" + min + ":" + seg);
+		}
+		else if(seg >= 9 && min >= 9 && horas >= 9)
+		{
+			JtextFieldReloj.setText("" + horas + ":" + min + ":" + seg);
+		}
+		
+		else if(seg <= 9 && min >= 9 && horas <= 9)
+		{
+			JtextFieldReloj.setText("" + "0" + horas + ":" + min + ":" + "0" + seg);
+		}
+		else if(seg <= 9 && min >= 9 && horas >= 9)
+		{
+			JtextFieldReloj.setText("" + horas + ":" + min + ":" + "0" + seg);
+		}
+		else
+		{
+			JtextFieldReloj.setText("" + horas + ":" + "0" + min + ":" + "0" + seg);
+		}
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		seg++;
+		if(seg == 60)
+		{
+			min++;
+			seg = 0;
+			if(min == 60)
+			{
+				horas++;
+				min = 0;
+			}
+		}
+		temporizador.start();
+		reloj();
 	}
 }
